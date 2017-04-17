@@ -89,6 +89,7 @@ alias i3config="atom ~/.config/i3/config"
 alias termconfig="atom ~/.config/termite/config"
 alias polyconfig="atom ~/.config/polybar/config"
 alias neoconfig="atom ~/.config/neofetch/config"
+alias roficonfig="atom ~/.config/rofi/config"
 alias csif="ssh ajfaust@pc6.cs.ucdavis.edu"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source  ~/Programs/powerlevel9k/powerlevel9k.zsh-theme
