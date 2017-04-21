@@ -18,6 +18,12 @@ set hlsearch
 set laststatus=2
 set guifont=Hack13
 set noshowmode
+" Hard wrap line at 80 characters
+set tw=80
+" Make lines shift over 4 characters from the previous line if wrapped
+set breakindent
+set breakindentopt=shift:4
+set splitright
 au BufReadPost *.swipl set syntax=prolog
 
 let g:lightline = {
@@ -71,3 +77,9 @@ endfunction
 if !has('gui_running')
 	  set t_Co=256
 endif
+
+function! LightlineFilename()
+  return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+         \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+         \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction

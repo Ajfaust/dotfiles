@@ -1,8 +1,9 @@
 # If you come from bash you might have to change your $PATH.
- export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export TERM=xterm-256color
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/andrew/.oh-my-zsh
+export ZSH=/home/andrew/.oh-my-zsh
 
 POWERLEVEL9K_MODE="awesome-fontconfig"
 
@@ -59,6 +60,8 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+#
+# SSH_ENV=$HOME/.ssh/environment
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -84,13 +87,15 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="atom ~/.zshrc"
-alias i3config="atom ~/.config/i3/config"
-alias termconfig="atom ~/.config/termite/config"
-alias polyconfig="atom ~/.config/polybar/config"
-alias neoconfig="atom ~/.config/neofetch/config"
-alias roficonfig="atom ~/.config/rofi/config"
+alias zshconfig="vim ~/.zshrc"
+alias i3config="vim ~/.config/i3/config"
+alias termconfig="vim ~/.config/termite/config"
+alias polyconfig="vim ~/.config/polybar/config"
+alias neoconfig="vim ~/.config/neofetch/config"
+alias roficonfig="vim ~/.config/rofi/config"
+alias vimconfig="vim ~/.vimrc"
 alias csif="ssh ajfaust@pc6.cs.ucdavis.edu"
+dotfiles() {~/Github/dotfiles/$1}
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source  ~/Programs/powerlevel9k/powerlevel9k.zsh-theme
 
@@ -112,7 +117,7 @@ POWERLEVEL9K_VCS_UNTRACKED_ICON=''
 POWERLEVEL9K_TIME_FOREGROUND='229'
 POWERLEVEL9K_TIME_BACKGROUND='063'
 POWERLEVEL9K_DIR_FOREGROUND='015'
-POWERLEVEL9K_STATUS_OK_BACKGROUND='234'
+POWERLEVEL9K_STATUS_OK_BACKGROUND='235'
 POWERLEVEL9K_DIR_HOME_BACKGROUND='026'
 POWERLEVEL9K_DIR_HOME_FOREGROUND='229'
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='026'
@@ -126,5 +131,5 @@ POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='230'
 DEFAULT_USER='andrew'
 #POWERLEVEL9K_ALWAYS_SHOW_USER=true
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator_joined time)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context dir rbenv vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)

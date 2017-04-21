@@ -11,7 +11,7 @@
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:FontAwesome, monospace 11
+font pango:FontAwesome, Source Sans Pro 11
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -200,10 +200,12 @@ bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 new_window none
 
 gaps inner 7
+smart_gaps on
 
 exec_always --no-startup-id ~/.config/polybar/launch.sh &
 exec_always --no-startup-id feh --bg-scale ~/Pictures/FirewatchNight.jpg
 exec --no-startup-id nm-applet
-exec --no-startup-id compton --config ~/.config/compton.conf -b
+exec --no-startup-id compton --config ~/.config/compton.conf -bf
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id xflux -z 95616
+exec $eval(ssh-agent)

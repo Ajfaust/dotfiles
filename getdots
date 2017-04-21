@@ -1,0 +1,22 @@
+HERE=~/Github/dotfiles
+
+# .zsh
+sudo cp ~/.zshrc $HERE
+
+# Polybar
+sudo cp -r ~/.config/polybar $HERE
+
+# Termite
+sudo cp -r ~/.config/termite $HERE
+
+# i3
+sudo cp -r ~/.config/i3 $HERE
+
+# i3blocks
+sudo cp -r ~/.config/i3blocks $HERE
+
+# neofetch
+sudo cp -r ~/.config/neofetch $HERE
+
+# compton.conf
+sudo cp ~/.config/compton.conf $HERE
