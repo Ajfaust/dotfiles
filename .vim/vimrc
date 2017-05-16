@@ -3,21 +3,28 @@
 execute pathogen#infect()
 
 syntax enable
+filetype plugin on
 au BufReadPost *.swipl set syntax=prolog	" Make .swipl files use prolog syntax
 set filetype=dosini
 set nocompatible
 
 " Colors and Highlighting {{{
-	colorscheme molokai
+	colorscheme badwolf
 	set background=dark
 	hi Visual term=reverse cterm=reverse 
+
 	" Make background terminal background
 	hi Normal ctermbg=none
+
 	" Make unwritten portion background terminal background
 	highlight NonText ctermbg=none
+
 	" Make line number background terminal background
 	highlight LineNr ctermfg=grey ctermbg=none
-	let g:rehash256 = 1				" Use 256 color
+
+	" Make comments italicized
+	highlight Comment cterm=italic
+
 	set cursorline		 			" Highlight current line
 " }}}	
 
@@ -28,33 +35,59 @@ set nocompatible
 " }}}
 
 " Indentation {{{
-	filetype plugin indent on
 	set autoindent					" Automatic indentation
 	set smartindent
-	set tabstop=8
+	set tabstop=4					" Amount of spaces a tab is interpreted as
 	set textwidth=80				" Hard wrap line at 80 characters
 	set shiftwidth=4
 	set wrapmargin=0
-	set colorcolumn=80
+	set colorcolumn=80				" Colored bar at 80 character mark
 	set formatoptions=tcq
+" }}}
+
+" Line Numbers {{{
+	set number								" Enable line numbering
+	set rnu									" Enable relative line numbering
+
+	" Toggle relative and absolute line numbering
+	function! NumToggle()
+		if &rnu
+			set nornu
+		else
+			set rnu
+		endif
+	endfunc
+
+	nnoremap <C-n> :call NumToggle()<cr>
 " }}}
 
 " Folding {{{
 	set foldenable					" Allow folds
-	set foldlevelstart=10				" Open most folds by default
+	set foldlevelstart=10			" Open most folds by default
+	set fdm=indent					" Set fold method to indents
 	set modelines=1
 " }}}
 
 " Misc {{{
-	set number					" Show line numbers
-	set splitright					" Make panes split to the right
+	set splitright				" Make panes split to the right
 	set mouse=n					" Allow mouse input in normal mode
-	set scrolloff=5 
+	set scrolloff=5 			" Scroll when cursor is 5 lines away from end
 	set wildmenu 
-" }}}
+
+	" Allow undo after closing files
+	set undofile
+	set undodir=~/.vim/undodir
+
+	" Autoload file changes
+	set autoread
+
+	" Trim trailing whitespace for certain files on save
+	autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> %s/\s\+$//e
+" }}} 
 
  " Keymaps {{{
 	let mapleader=","       " leader is comma
+
 	" Ctrl-left/right to switch tabs, Alt-left/right to move tabs
 	nnoremap <C-Left> :tabprevious<CR>
 	nnoremap <C-Right> :tabnext<CR>
@@ -67,20 +100,24 @@ set nocompatible
 	" turn off search highlight
 	nnoremap <leader><space> :nohlsearch<CR>	
 
+	" Remap escape to 'jj'
 	inoremap jj <Esc>
 
 	" move to beginning/end of line
 	nnoremap B ^
 	nnoremap E $
 
-	" Disable $ and ^
+	" Disable $ and ^, along with arrowkeys
 	nnoremap $ <nop>
 	nnoremap ^ <nop>
+	nnoremap <Up> <nop>
+	nnoremap <Down> <nop>
+	nnoremap <Left> <nop>
+	nnoremap <Right> <nop>
 
-	" Map : key to ;
+	" Swap ; and : mappings
 	nore ; :
-	" Map ; key to \
-	nore \ ;	
+	nore : ;	
 
 	" Keymap to tagbar
 	nmap <F8> :TagbarToggle<CR>
@@ -109,6 +146,7 @@ set nocompatible
 	set noshowmode					" Hide current mode in command line
 	set ttimeoutlen=50				" Faster mode updates in lightline
 	let g:lightline = {
+		  \ 'colorscheme': 'wombat',
 	      \ 'active': {
 	      \   'left': [ [ 'mode', 'paste' ],
 	      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
@@ -156,10 +194,7 @@ set nocompatible
 		return ''
 	endfunction
 
-	if !has('gui_running')
-		  set t_Co=256
-	endif
-
+	" Display file name
 	function! LightlineFilename()
 	  return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
 		 \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
