@@ -1,5 +1,15 @@
 " Andrew Faust
 
+" Extensions/Color Schemes:
+" 	badwolf
+"	base-16
+"	fugitive
+"	gitgutter
+" 	lightline
+" 	nerdcommenter
+" 	pathogen
+" 	syntastic
+
 execute pathogen#infect()
 
 syntax enable
@@ -9,7 +19,7 @@ set filetype=dosini
 set nocompatible
 
 " Colors and Highlighting {{{
-	colorscheme badwolf
+	colorscheme base16-default-dark
 	set background=dark
 	hi Visual term=reverse cterm=reverse 
 
