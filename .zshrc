@@ -97,7 +97,7 @@ alias vimconfig="vim ~/.vimrc"
 alias csif="ssh ajfaust@pc6.cs.ucdavis.edu"
 dotfiles() {~/Github/dotfiles/$1}
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source  ~/Programs/powerlevel9k/powerlevel9k.zsh-theme
+source  $ZSH/custom/themes/powerlevel9k/powerlevel9k.zsh-theme
 
 #Powerlevel9k Customizations
 
